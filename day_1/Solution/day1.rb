@@ -2,8 +2,9 @@
 
 column1 = []
 column2 = []
+total_distance = 0
 
-File.open('your_file.txt', 'r') do |file|
+File.open('../sample_data.txt', 'r') do |file|
   file.each_line do |line|
     values = line.split
     column1 << values[0].to_i
@@ -14,3 +15,8 @@ end
 column1.sort!
 column2.sort!
 
+column1.each_with_index do |value, index|
+  total_distance += (value - column2[index]).abs
+end
+
+puts "Total distance: #{total_distance}"
